@@ -1,57 +1,60 @@
-# Cryptography & Nullity Demonstration - Improved Version
+# Cryptography & Nullity: Singular Matrices Demo
 
-This application demonstrates why singular matrices fail in cryptography through an interactive visualization.
+This application demonstrates why singular matrices fail in encoding/decoding messages in cryptography, particularly in the context of the Hill cipher.
+
+## Features
+
+- **Interactive Matrix Selection**: Try different matrices and see their properties
+- **Encryption/Decryption Demo**: See how different matrices affect message encryption
+- **Visual Transformation**: Understand the geometric interpretation of matrix transformations
+- **Comprehensive Explanation**: Learn the mathematical and information-theoretic reasons behind the failure
 
 ## Files
 
-- `main_improved.py` - The updated entry point for the application
-- `gui_improved.py` - The enhanced Tkinter UI implementation with better responsiveness
-- `matrix_crypto.py` - The cryptography logic implementation
+- **main.py**: Entry point for the application
+- **algorithm.py**: Contains the mathematical operations and cryptographic algorithms
+- **gui.py**: Tkinter-based graphical user interface
 
-## Improvements Made
+## Recent Updates
 
-The improved version of the application addresses several UI issues:
+- Added comprehensive scrolling support throughout the interface
+- Fixed issues with content being cut off at the bottom of the window
+- Added mouse wheel scrolling for easier navigation
+- Improved visualization resizing and display
 
-1. **Fixed Scrollbar Issues**:
-   - Detailed results now properly show scrollbars
-   - Used tkinter's ScrolledText widget for more reliable scrolling
+## How to Use
 
-2. **Better Responsive Layout**:
-   - Switched from pack to grid layout manager for better control
-   - Configured weight properties to make UI elements resize properly
-   - Window elements now properly expand when resizing the window
+1. Run the application with:
+   ```
+   python main.py
+   ```
 
-3. **Improved Tab Visibility**:
-   - Tabs are now more visible and accessible
-   - Content properly expands to fill available space
+2. The main window now has scrollbars to access all content
+3. Try different matrices using the preset buttons or by entering your own values
+4. Enter messages to encrypt/decrypt and observe the results
+5. Use the scrollbars to navigate through all sections of the application
 
-4. **General UI Enhancements**:
-   - Added better spacing and padding
-   - Improved overall layout organization
-   - Added scrolling capabilities to all text widgets
+## Key Concepts Demonstrated
 
-## How to Run the Improved Version
+1. **Singular Matrices**: Matrices with determinant = 0
+   - Cannot be inverted, making decryption impossible
+   - Visually collapse space into lower dimensions
 
-1. Make sure you have Python installed with tkinter, numpy, and matplotlib
-2. Run: `python main_improved.py`
+2. **Hill Cipher Requirements**:
+   - Matrices must have non-zero determinants
+   - Determinant must be coprime with the modulus (26 for English alphabet)
+   - Otherwise encryption or decryption will fail
 
-## Troubleshooting
+3. **Information Theory**:
+   - Singular transformations lose information
+   - Multiple inputs map to the same output
+   - This violates the one-to-one mapping needed for encryption
 
-If you encounter any issues with the improved version, you can still run the original version with:
-`python main.py`
+## Technical Notes
 
-## Using the Application
-
-1. Select a matrix type (Invertible, Singular, or Custom)
-2. Enter a message to encrypt
-3. Click "Run Encryption" to see the results
-4. Explore both the graph and detailed results tabs
-5. Try different matrices to see how they affect encryption/decryption
-
-## Educational Value
-
-This tool helps students understand:
-- Why determinant and nullity matter in matrix operations
-- The connection between linear algebra and cryptography
-- How information preservation relates to matrix invertibility
-- The practical implications of singular vs. non-singular matrices
+The application requires:
+- Python 3.x
+- Tkinter (for GUI)
+- NumPy (for matrix operations)
+- Matplotlib (for visualization)
+- PIL/Pillow (for image handling)
