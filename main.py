@@ -21,6 +21,7 @@ def main():
     print("- Create custom matrices to test")
     print("- See how nullity affects information preservation")
     print("- Understand why singular matrices break cryptography")
+    print("- Drag the borders between sections to resize them")
     print("=" * 60)
     
     # Create the crypto model
@@ -29,6 +30,12 @@ def main():
     # Create the main window
     root = tk.Tk()
     root.title("Cryptography & Nullity Demonstration")
+    
+    # Set application icon (optional)
+    try:
+        root.iconbitmap("lock_icon.ico")  # You can add an icon file if available
+    except tk.TclError:
+        pass  # No icon available, continue without it
     
     # Initialize the application
     app = CryptographyApp(root, crypto_model)

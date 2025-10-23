@@ -1,69 +1,57 @@
-# Cryptography & Nullity Demonstration
+# Cryptography & Nullity Demonstration - Improved Version
 
-## Project Description
-This interactive application demonstrates **why singular matrices fail in cryptography** for Project 6 of the Linear Transformations and Rank/Nullity mini-projects. It provides a visual and mathematical explanation of how matrix properties affect encryption and decryption.
+This application demonstrates why singular matrices fail in cryptography through an interactive visualization.
 
-## How to Run
-1. Make sure you have Python installed
-2. Install required packages:
-   ```
-   pip install numpy matplotlib
-   ```
-3. Run the application:
-   ```
-   python main.py
-   ```
+## Files
 
-## Files Included
-- `main.py` - Entry point for the application
-- `matrix_crypto.py` - Contains the matrix operations and cryptography logic
-- `gui.py` - Implements the Tkinter user interface
+- `main_improved.py` - The updated entry point for the application
+- `gui_improved.py` - The enhanced Tkinter UI implementation with better responsiveness
+- `matrix_crypto.py` - The cryptography logic implementation
 
-## How to Use the Application
+## Improvements Made
 
-### Step 1: Choose a Matrix
-- Select either **Invertible Matrix** (determinant ≠ 0) or **Singular Matrix** (determinant = 0)
-- You can also create a custom matrix by entering values in the 3×3 grid
+The improved version of the application addresses several UI issues:
 
-### Step 2: Enter a Message
-- Type any message in the text field (letters A-Z and spaces)
+1. **Fixed Scrollbar Issues**:
+   - Detailed results now properly show scrollbars
+   - Used tkinter's ScrolledText widget for more reliable scrolling
 
-### Step 3: Run Encryption
-- Click the **Run Encryption** button
-- Observe how the message is encrypted and whether it can be decrypted
+2. **Better Responsive Layout**:
+   - Switched from pack to grid layout manager for better control
+   - Configured weight properties to make UI elements resize properly
+   - Window elements now properly expand when resizing the window
 
-### Step 4: Analyze Results
-- The graph shows original, encrypted, and (if possible) decrypted values
-- The results area explains whether decryption succeeded or failed
-- Matrix properties show determinant, rank, nullity, and security assessment
+3. **Improved Tab Visibility**:
+   - Tabs are now more visible and accessible
+   - Content properly expands to fill available space
 
-## Key Concepts Demonstrated
+4. **General UI Enhancements**:
+   - Added better spacing and padding
+   - Improved overall layout organization
+   - Added scrolling capabilities to all text widgets
 
-### Singular vs. Non-singular Matrices
-- **Non-singular Matrix**: Has a non-zero determinant and can be inverted
-- **Singular Matrix**: Has a zero determinant and cannot be inverted
+## How to Run the Improved Version
 
-### The Rank-Nullity Theorem
-For an n×n matrix:
-- rank + nullity = n
-- A full-rank matrix (rank = n) has nullity = 0 and is invertible
-- A rank-deficient matrix (rank < n) has nullity > 0 and is singular
+1. Make sure you have Python installed with tkinter, numpy, and matplotlib
+2. Run: `python main_improved.py`
 
-### Cryptographic Implications
-- **Encryption**: Message is transformed by multiplying with the key matrix
-- **Decryption**: Requires multiplying by the inverse of the key matrix
-- **Singular Matrices**: Cannot be used for secure cryptography because:
-  1. They have no inverse (making decryption mathematically impossible)
-  2. They have non-zero nullity (causing information loss)
-  3. Multiple different inputs map to the same output
+## Troubleshooting
 
-## Project Goals
-This demonstration helps viewers understand:
-1. How matrix-based encryption works
-2. Why invertible matrices are essential for cryptography
-3. The relationship between matrix properties and information security
-4. The practical implications of the Rank-Nullity Theorem
+If you encounter any issues with the improved version, you can still run the original version with:
+`python main.py`
 
-## References
-- Strang, G. (2016). Introduction to Linear Algebra (5th ed.). Wellesley-Cambridge Press.
-- Hoffstein, J., Pipher, J., & Silverman, J. H. (2014). An Introduction to Mathematical Cryptography. Springer.
+## Using the Application
+
+1. Select a matrix type (Invertible, Singular, or Custom)
+2. Enter a message to encrypt
+3. Click "Run Encryption" to see the results
+4. Explore both the graph and detailed results tabs
+5. Try different matrices to see how they affect encryption/decryption
+
+## Educational Value
+
+This tool helps students understand:
+- Why determinant and nullity matter in matrix operations
+- The connection between linear algebra and cryptography
+- How information preservation relates to matrix invertibility
+- The practical implications of singular vs. non-singular matrices
