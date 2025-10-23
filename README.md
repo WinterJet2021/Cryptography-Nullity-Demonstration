@@ -64,12 +64,6 @@ This demonstration helps viewers understand:
 3. The relationship between matrix properties and information security
 4. The practical implications of the Rank-Nullity Theorem
 
-## Tips for Presentation
-- Start with the invertible matrix to show successful encryption/decryption
-- Switch to the singular matrix to demonstrate why it fails
-- Try custom matrices with determinants close to zero to show instability
-- Relate the visualization to the mathematical concepts of rank and nullity
-
 ## References
 - Strang, G. (2016). Introduction to Linear Algebra (5th ed.). Wellesley-Cambridge Press.
 - Hoffstein, J., Pipher, J., & Silverman, J. H. (2014). An Introduction to Mathematical Cryptography. Springer.
