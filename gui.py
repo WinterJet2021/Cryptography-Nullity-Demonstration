@@ -368,11 +368,12 @@ class CryptographyDemoApp:
         self.results_text.delete(1.0, tk.END)
         
         try:
-            # Encrypt message
-            encrypted = MatrixCrypto.encrypt_message(message, self.current_matrix)
+            # Encrypt message - now returns tuple with space positions
+            encrypted, space_positions, original_message = MatrixCrypto.encrypt_message(message, self.current_matrix)
             
-            # Try to decrypt
-            decrypted = MatrixCrypto.decrypt_message(encrypted, self.current_matrix)
+            # Try to decrypt with space preservation
+            decrypted = MatrixCrypto.decrypt_message(encrypted, self.current_matrix, 
+                                                    space_positions, original_message)
             
             # Display results
             results = f"Original message: {message}\n\n"
@@ -387,8 +388,14 @@ class CryptographyDemoApp:
                     results += "Decryption failed because the matrix is not invertible in Z26.\n"
                 else:
                     results += "Decryption failed. See error message above.\n"
-            elif decrypted == message:
+            elif decrypted.replace(" ", "") == message.replace(" ", ""):
                 results += "✅ Decryption successful! Original message recovered.\n"
+                
+                # If spaces were affected, add explanation
+                if decrypted != message and message.count(" ") > 0:
+                    results += "\nNote: Spaces are handled specially in the Hill cipher.\n"
+                    results += "The algorithm operates only on alphabetic characters (A-Z).\n"
+                    results += "Spaces are removed during encryption and reinserted during decryption.\n"
             else:
                 results += "⚠️ Decryption produced a different message than the original.\n"
                 

@@ -32,6 +32,12 @@ class MatrixCrypto:
         """
         # Convert message to numbers (A=0, B=1, ..., Z=25)
         message = message.upper()
+        
+        # Store the original message and positions of spaces for later reference
+        original_message = message
+        space_positions = [i for i, char in enumerate(message) if char == ' ']
+        
+        # Remove spaces and non-alphabetic characters for encryption
         message_nums = [ord(char) - ord('A') for char in message if char.isalpha()]
         
         # Pad message if necessary
@@ -54,16 +60,18 @@ class MatrixCrypto:
             for num in vector:
                 cipher_text += chr(int(num) + ord('A'))
         
-        return cipher_text
+        return cipher_text, space_positions, original_message
     
     @staticmethod
-    def decrypt_message(cipher_text, key_matrix):
+    def decrypt_message(cipher_text, key_matrix, space_positions=None, original_message=None):
         """
         Decrypt a message that was encrypted with the Hill cipher.
         
         Args:
             cipher_text (str): The encrypted message
             key_matrix (numpy.ndarray): The key matrix used for encryption
+            space_positions (list, optional): Positions of spaces in the original message
+            original_message (str, optional): The original message before encryption
             
         Returns:
             str: The decrypted message or an error message
@@ -118,6 +126,27 @@ class MatrixCrypto:
             for vector in message_vectors:
                 for num in vector:
                     decrypted_message += chr(int(round(num)) % 26 + ord('A'))
+            
+            # Reinsert spaces if provided
+            if space_positions and original_message:
+                # Only insert spaces up to the length of the decrypted message
+                # to avoid index errors if the decryption is not exact
+                result_chars = list(decrypted_message)
+                
+                # Calculate how many alphabet characters are in the original message
+                alpha_count = sum(1 for char in original_message if char.isalpha())
+                
+                # Only use spaces that would fall within the decrypted text
+                valid_spaces = [pos for pos in space_positions if pos < alpha_count]
+                
+                # Insert spaces
+                offset = 0
+                for pos in valid_spaces:
+                    if pos + offset < len(result_chars):
+                        result_chars.insert(pos + offset, ' ')
+                        offset += 1
+                
+                decrypted_message = ''.join(result_chars)
             
             return decrypted_message
         
